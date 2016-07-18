@@ -39,8 +39,11 @@ public class LoginAction {
 
   @RequestMapping("/logout")
   public String logout(){
-
-    return "";
+    Subject subject = SecurityUtils.getSubject();
+    if (subject.isAuthenticated()){
+      subject.logout();
+    }
+    return "login";
   }
 
 }
